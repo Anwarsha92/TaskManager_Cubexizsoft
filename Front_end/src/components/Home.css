@@ -1,0 +1,22 @@
+
+.profileouter{
+    height: 80vh;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+}
+
+.profile{
+    width: 600px;
+    padding: 10px;
+}
+.details{
+    display: flex;
+    justify-content: space-between;
+}
+.task{
+    width:650px
+}

@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "name": "anwar",
+      "email": "anwarshamylolil@gmail.com",
+      "pswd": "anwar",
+      "id": 1
+    },
+    {
+      "name": "anwar",
+      "email": "abcd@gmail.com",
+      "pswd": "asd",
+      "id": 2
+    },
+    {
+      "name": "anwar",
+      "email": "abcd@gmail.com",
+      "pswd": "asd",
+      "id": 3
+    },
+    {
+      "name": "anwar",
+      "email": "aghoshvkumar1997@gmail.com",
+      "pswd": "asd",
+      "id": 4
+    }
+  ]
+}
