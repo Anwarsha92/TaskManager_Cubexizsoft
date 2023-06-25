@@ -34,11 +34,11 @@ function Tasks() {
     <div>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">TASK-MANAGER</Navbar.Brand>
+          <Navbar.Brand href={`/home/${params.id}`}>TASK-MANAGER</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href={`/home/${params.id}`}>Home</Nav.Link>
               {user ?
                 (
                   <>
@@ -48,7 +48,7 @@ function Tasks() {
 
 
                 ) : ""}
-              <Nav.Link href="#link1">Logout</Nav.Link>
+              <Nav.Link href="">Logout</Nav.Link>
 
             </Nav>
           </Navbar.Collapse>
@@ -58,27 +58,6 @@ function Tasks() {
 
       <div className='profileouter' >
         <div className=' profile bg-success'>
-          <h2 className='text-center text-white'><i>Bio-Graph</i></h2>
-          <div className='details'>
-            <div>
-              <h3 className=' text-white'>name</h3>
-              <h3 className=' text-white'>email</h3>
-              <h3 className=' text-white'>mobile</h3>
-            </div>
-            <div>
-              {user ?
-                (
-                  <>
-                    <h3>{user.uname}</h3>
-                    <p>{user.email}</p>
-                    <h3>{user.mobile}</h3>
-                  </>
-                ) : ""}
-            </div>
-          </div>
-        </div>
-
-        <div className=' profile task bg-success'>
           <h2 className='text-center text-white'><i>Bio-Graph</i></h2>
           <div className='details'>
             <div>

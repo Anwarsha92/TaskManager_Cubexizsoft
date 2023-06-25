@@ -46,8 +46,15 @@ server.get('/showtask/:id',(req,res)=>{
 
 })
 
-server.post('/deleteTask/:id',(req,res)=>{
-    logics.deleteTask(req.params.id).then(result=>{
+server.post('/deleteTask',(req,res)=>{
+    logics.deleteTask(req.body.params1,req.body.id).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+
+})
+
+server.post('/updateTask/:id',(req,res)=>{
+    logics.updateTask(req.params.id).then(result=>{
         res.status(result.statusCode).json(result)
     })
 

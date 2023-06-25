@@ -65,8 +65,14 @@ addTask=(id,task,params1)=>{
     return db.Tuser.findOne({email:params1}).then(user=>{
         if(user){
             date=new Date()
-            shortDate = date.toLocaleDateString();
-            user.task.push({Task:task, Date:shortDate,completed:'-',status:'Pending',id:id})
+            var dateString = date.toLocaleString(undefined, {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+              });
+            user.task.push({Task:task, Date:dateString,completed:'-',status:'Pending',id:id})
             
 
             user.save()
@@ -91,13 +97,56 @@ showTask=(id)=>{
     })
 }
 
-deleteTask=(id)=>{
+deleteTask=(params1,id)=>{
     return db.Tuser.updateOne(
-        {_id: id}, {$pull: {"task.id": {id: id}}}
-      )
+        { "email": params1 }, // Filter to find the document with the specific "uname"
+  { $pull: { "task": { "id": id } } }
+      ).then((result) => {
+        if (result) {
+          return {
+            status: true,
+            message: "deleted",
+            statusCode: 200,
+          };
+        } else {
+          return {
+            status: false,
+            message: "error",
+            statusCode: 404,
+          };
+        }
+      });
 
 }
 
+updateTask=(id)=>{
+    date=new Date()
+    var dateString = date.toLocaleString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+      });
+    return db.Tuser.updateOne(
+        {'task.id': id },
+    { $set: { 'task.$.completed': dateString,'task.$.status': 'Completed' } },).then((result) => {
+        if (result) {
+          return {
+            status: true,
+            message: "Task completed",
+            statusCode: 200,
+          };
+        } else {
+          return {
+            status: false,
+            message: "error",
+            statusCode: 404,
+          };
+        }
+      });
+}
+
 module.exports={
-    RegisterUser,LoginUser,getUser,addTask,showTask,deleteTask
+    RegisterUser,LoginUser,getUser,addTask,showTask,deleteTask,updateTask
 }

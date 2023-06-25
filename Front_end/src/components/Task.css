@@ -33,3 +33,6 @@
 	transition: .2s ease-in;
 	cursor: pointer;
 }
+.tabledata{
+	max-width: 100%;
+}

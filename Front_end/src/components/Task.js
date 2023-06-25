@@ -48,12 +48,31 @@ function Task() {
     console.log(taskList)
 
     useEffect(() => {
+
+       
         showTask();setId(uuid().slice(0,6))
     }, []);
 
     const deleteTask=async(id)=>{
-        const result=await axios.post('http://localhost:8000/deleteTask/'+id)
+
+        const body={
+            params1,
+            id
+        }
+        const result=await axios.post('http://localhost:8000/deleteTask',body)
         alert(result.data.message)
+        window.location.reload(true)
+
+
+    }
+
+    const completeTask=async(id)=>{
+
+        const result=await axios.post('http://localhost:8000/updateTask/'+id)
+        alert(result.data.message)
+        window.location.reload(true)
+
+
     }
 
 
@@ -84,7 +103,7 @@ function Task() {
 
                 <div className='text-center mt-5'>
                     <h3 className='text-white'>Task List</h3>
-                    <Table striped bordered hover>
+                    <Table className='tabledata' striped bordered hover>
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -105,8 +124,8 @@ function Task() {
                                 <td>{list.Task}</td>
                                 <td>{list.status}</td>
                                 <td>
-                                    <button className='btn text-success fs-3'><i class="las la-check-circle"></i></button>
-                                    <button className='btn text-info fs-3'><i class="las la-edit"></i></button>
+                                    <button onClick={()=>completeTask(list.id)} className='btn text-success fs-3'><i class="las la-check-circle"></i></button>
+                                   
                                     <button onClick={()=>deleteTask(list.id)} className='btn text-danger fs-3'><i class="las la-trash"></i></button>
                                 </td>
                             </tr>
